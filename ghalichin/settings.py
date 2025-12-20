@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'landing',
     # 'django_extensions',
     'user_profile',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -86,12 +87,16 @@ WSGI_APPLICATION = 'ghalichin.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ghalichin',
+        'ENGINE': 'django.db.backends.postgresql',      #_psycopg2
+        'NAME': 'ghalichin_db',
         'USER': 'ghalichin',
         'PASSWORD': '123456',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c TimeZone=UTC',
+        },
+        'CONN_MAX_AGE': 0,
     }
 }
 
@@ -124,7 +129,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False       #taghir
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
