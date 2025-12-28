@@ -1,6 +1,14 @@
 from django.urls import path
 from knox import views as knox_views
-from .views import health, register, me, dbtz
+from .views import (
+    health,
+    register,
+    me,
+    dbtz,
+    update_profile,
+    forgot_password,
+    reset_password,
+)
 
 urlpatterns = [
     path("health/", health),
@@ -14,6 +22,13 @@ urlpatterns = [
     # current user
     path("me/", me),
 
-    # debug timezone (اختیاری)
+    # update profile
+    path("profile/", update_profile),  # PATCH /accounts/api/profile/
+
+    # debug timezone
     path("dbtz/", dbtz),
+
+    # forgot/reset password
+    path("forgot-password/", forgot_password),
+    path("reset-password/", reset_password),
 ]

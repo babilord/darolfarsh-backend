@@ -163,3 +163,21 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3001",
     "http://127.0.0.1:9000"
 ]
+
+# Password reset token expiry (Django 2.2)
+PASSWORD_RESET_TIMEOUT_DAYS = 1 /96  # 15 minutes
+
+#forgot password part
+FRONTEND_BASE_URL = "http://localhost:3000"#in ro bayad taghir bedim vaghti raftim roo server va url dorost
+                                            #ro benevisim masalan intori : FRONTEND_BASE_URL = "https://your-frontend-domain.com"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"    # berim roo server in ro comment kon
+DEFAULT_FROM_EMAIL = "Darolfarsh <noreply@localhost>"
+# Email (SMTP)
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "mail.yourdomain.com"          # یا smtp.yourdomain.com (از هاست بگیر)
+# EMAIL_PORT = 465    # For SSL , if we use TLS Email_Port must be 587
+# EMAIL_HOST_USER = "noreply@yourdomain.com"
+# EMAIL_HOST_PASSWORD = "YOUR_EMAIL_PASSWORD"
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = True
