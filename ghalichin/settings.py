@@ -52,9 +52,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,6 +63,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ghalichin.urls'
+
+# بعد از لاگین کاربر به این مسیر هدایت می‌شود
+#LOGIN_REDIRECT_URL = '/api/'
+#LOGIN_URL = '/api/admin/login/'
 
 TEMPLATES = [
     {
@@ -89,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',      #_psycopg2
         'NAME': 'ghalichin_db',
-        'USER': 'ghalichin',
-        'PASSWORD': '123456',
+        'USER': 'zabbix',
+        'PASSWORD': 'zabbix_pass',
         'HOST': 'localhost',
         'PORT': '5432',
         'OPTIONS': {
@@ -161,14 +165,16 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://localhost:3000",
     "http://localhost:3001",
-    "http://127.0.0.1:9000"
+    "http://127.0.0.1:9000",
+    "https://daralfarsha.com",
+    "http://daralfarsha.com"
 ]
 
 # Password reset token expiry (Django 2.2)
 PASSWORD_RESET_TIMEOUT_DAYS = 1 /96  # 15 minutes
 
 #forgot password part
-FRONTEND_BASE_URL = "http://localhost:3000"#in ro bayad taghir bedim vaghti raftim roo server va url dorost
+FRONTEND_BASE_URL = "https://daralfarsha.com"#in ro bayad taghir bedim vaghti raftim roo server va url dorost
                                             #ro benevisim masalan intori : FRONTEND_BASE_URL = "https://your-frontend-domain.com"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"    # berim roo server in ro comment kon
