@@ -18,8 +18,8 @@ urlpatterns = [
     path("register/", csrf_exempt(register)),
 
     # Knox login/logout
-    #path("login/", KnoxLoginAPI.as_view(), name="knox_login"),
-    path("login/", csrf_exempt(knox_views.LoginView.as_view()), name="knox_login"),
+    path("login/", KnoxLoginAPI.as_view(), name="knox_login"),
+    #path("login/", csrf_exempt(knox_views.LoginView.as_view()), name="knox_login"),
     path("logout/", csrf_exempt(knox_views.LogoutView.as_view()), name="knox_logout"),
     path("logoutall/", csrf_exempt(knox_views.LogoutAllView.as_view()), name="knox_logoutall"),
 
