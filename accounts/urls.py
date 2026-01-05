@@ -12,7 +12,7 @@ from .views import (
     reset_password,
 )
 
-app_name = "accounts-api"
+#app_name = "accounts-api"
 urlpatterns = [
     path("health/", csrf_exempt(health)),
     path("register/", csrf_exempt(register)),
