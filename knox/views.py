@@ -12,9 +12,24 @@ from user_profile.models import Profile
 from .utils import email_validator, password_validator
 from rest_framework.exceptions import NotAcceptable
 from user_profile.api.serializers import UserPrivateSerializer
+from django.conf import settings as django_settings
 
 
-class LoginView(APIView):
+class CorsOptionsMixin:
+    def options(self, request, *args, **kwargs):
+        # Return a minimal preflight response with CORS headers.
+        resp = Response(status=200)
+        # Allow all origins if configured, otherwise leave wildcard (frontend should match)
+        if getattr(django_settings, 'CORS_ALLOW_ALL_ORIGINS', False):
+            resp['Access-Control-Allow-Origin'] = '*'
+        else:
+            resp['Access-Control-Allow-Origin'] = ','.join(getattr(django_settings, 'CORS_ORIGIN_WHITELIST', [])) or '*'
+        resp['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        resp['Access-Control-Allow-Headers'] = 'Authorization, Content-Type, X-CSRFToken'
+        return resp
+
+
+class LoginView(CorsOptionsMixin, APIView):
     authentication_classes = [BasicAuthentication]
     permission_classes = (IsAuthenticated,)
 
@@ -36,7 +51,7 @@ class LoginView(APIView):
         })
 
 
-class LogoutView(APIView):
+class LogoutView(CorsOptionsMixin, APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
@@ -46,7 +61,7 @@ class LogoutView(APIView):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
-class LogoutAllView(APIView):
+class LogoutAllView(CorsOptionsMixin, APIView):
     '''
     Log the user out of all sessions
     I.E. deletes all auth tokens for the user
@@ -60,7 +75,7 @@ class LogoutAllView(APIView):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
-class RegisterView(APIView):
+class RegisterView(CorsOptionsMixin, APIView):
 
     def initial(self, request, *args, **kwargs):
         # Allow CORS preflight (OPTIONS) to bypass authentication/permission
