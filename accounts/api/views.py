@@ -8,7 +8,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from knox.auth import TokenAuthentication
 from user_profile.models import Profile
@@ -16,12 +16,21 @@ from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+from knox.views import LoginView as KnoxLoginView
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.contrib.auth import login
+
+
 
 
 def health(request):
     return JsonResponse({"status": "ok", "module": "accounts"})
 
 @csrf_exempt
+@api_view(["POST"])
+@permission_classes([AllowAny])
 def register(request):
     if request.method != "POST":
         return JsonResponse({"detail": "Method not allowed"}, status=405)
@@ -52,6 +61,31 @@ def register(request):
     Profile.objects.get_or_create(user=user)
 
     return JsonResponse({"detail": "User created", "id": user.id, "email": user.email}, status=201)
+
+
+class KnoxLoginAPI(KnoxLoginView):
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request, format=None):
+        # Knox expects username, but your frontend sends email
+        username = request.data.get("email") or request.data.get("username")
+        password = request.data.get("password")
+
+        if not username or not password:
+            return Response({"detail": "email/username and password required"}, status=400)
+
+        serializer = AuthTokenSerializer(data={
+            "username": username,
+            "password": password
+        })
+        serializer.is_valid(raise_exception=True)
+
+        user = serializer.validated_data["user"]
+        login(request, user)
+
+        return super(KnoxLoginAPI, self).post(request, format=None)
+
 
 
 @api_view(["GET"])
