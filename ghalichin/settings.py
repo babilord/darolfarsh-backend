@@ -24,7 +24,12 @@ SECRET_KEY = 'a&0+@j*)e+jbttarm7)k&@1%fb+1onh=f%-bw!*2hntew+3%$^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '50.6.249.173',
+    'localhost',
+    '127.0.0.1',
+    'api.daralfarsha.com',
+]
 
 # Application definition
 
@@ -52,7 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+       'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,10 +66,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+#FORCE_SCRIPT_NAME = '/api'
 ROOT_URLCONF = 'ghalichin.urls'
 
-# بعد از لاگین کاربر به این مسیر هدایت می‌شود
+# ??? ?? ????? ????? ?? ??? ???? ????? ??????
 #LOGIN_REDIRECT_URL = '/api/'
 #LOGIN_URL = '/api/admin/login/'
 
@@ -92,9 +97,9 @@ WSGI_APPLICATION = 'ghalichin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',      #_psycopg2
-        'NAME': 'ghalichin_db',
-        'USER': 'zabbix',
-        'PASSWORD': 'zabbix_pass',
+        'NAME': 'darolfarsh',
+        'USER': 'darolfarsh',
+        'PASSWORD': 'babak_keyvan_',
         'HOST': 'localhost',
         'PORT': '5432',
         'OPTIONS': {
@@ -159,6 +164,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 CORS_ORIGIN_WHITELIST = [
     "https://example.com",
     "https://sub.example.com",
@@ -167,8 +175,9 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3001",
     "http://127.0.0.1:9000",
     "https://daralfarsha.com",
-    "http://daralfarsha.com"
+    "http://daralfarsha.com",
 ]
+
 
 # Password reset token expiry (Django 2.2)
 PASSWORD_RESET_TIMEOUT_DAYS = 1 /96  # 15 minutes
