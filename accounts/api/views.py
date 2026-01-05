@@ -17,9 +17,9 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
 
+
 def health(request):
     return JsonResponse({"status": "ok", "module": "accounts"})
-
 
 @csrf_exempt
 def register(request):

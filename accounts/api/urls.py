@@ -1,5 +1,6 @@
 from django.urls import path
 from knox import views as knox_views
+from django.views.decorators.csrf import csrf_exempt
 from .views import (
     health,
     register,
@@ -12,24 +13,24 @@ from .views import (
 
 app_name = "accounts-api"
 urlpatterns = [
-    path("health/", health),
-    path("register/", register),
+    path("health/", csrf_exempt(health)),
+    path("register/", csrf_exempt(register)),
 
     # Knox login/logout
-    path("login/", knox_views.LoginView.as_view(), name="knox_login"),
-    path("logout/", knox_views.LogoutView.as_view(), name="knox_logout"),
-    path("logoutall/", knox_views.LogoutAllView.as_view(), name="knox_logoutall"),
+    path("login/", csrf_exempt(knox_views.LoginView.as_view()), name="knox_login"),
+    path("logout/", csrf_exempt(knox_views.LogoutView.as_view()), name="knox_logout"),
+    path("logoutall/", csrf_exempt(knox_views.LogoutAllView.as_view()), name="knox_logoutall"),
 
     # current user
-    path("me/", me),
+    path("me/", csrf_exempt(me)),
 
     # update profile
-    path("profile/", update_profile),  # PATCH /accounts/api/profile/
+    path("profile/", csrf_exempt(update_profile)),  # PATCH /accounts/api/profile/
 
     # debug timezone
-    path("dbtz/", dbtz),
+    path("dbtz/", csrf_exempt(dbtz)),
 
     # forgot/reset password
-    path("forgot-password/", forgot_password),
-    path("reset-password/", reset_password),
+    path("forgot-password/", csrf_exempt(forgot_password)),
+    path("reset-password/", csrf_exempt(reset_password)),
 ]
