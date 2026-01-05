@@ -24,7 +24,7 @@ urlpatterns = [
     path("logoutall/", csrf_exempt(knox_views.LogoutAllView.as_view()), name="knox_logoutall"),
 
     # current user
-    path("me/", csrf_exempt(me)),
+    path("me/", me),
 
     # update profile
     path("profile/", csrf_exempt(update_profile)),  # PATCH /accounts/api/profile/
