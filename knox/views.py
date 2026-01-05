@@ -18,6 +18,12 @@ class LoginView(APIView):
     authentication_classes = [BasicAuthentication]
     permission_classes = (IsAuthenticated,)
 
+    def initial(self, request, *args, **kwargs):
+        # Allow CORS preflight (OPTIONS) to bypass authentication/permission
+        if request.method == 'OPTIONS':
+            return
+        return super().initial(request, *args, **kwargs)
+
     def post(self, request, format=None):
         expires = (None if request.POST.get('rememberme', False) else True)
         token = AuthToken.objects.create(request.user, expires=expires)
@@ -55,6 +61,12 @@ class LogoutAllView(APIView):
 
 
 class RegisterView(APIView):
+
+    def initial(self, request, *args, **kwargs):
+        # Allow CORS preflight (OPTIONS) to bypass authentication/permission
+        if request.method == 'OPTIONS':
+            return
+        return super().initial(request, *args, **kwargs)
 
     def post(self, request):
         context = {}
