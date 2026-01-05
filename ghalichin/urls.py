@@ -16,6 +16,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
+from django.views.decorators.csrf import csrf_exempt
 from .utils import move
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,7 @@ urlpatterns = [
     path('room/api/', include('room.api.urls', namespace="room-api")),
     path('sellers/api/', include('sellers.api.urls', namespace="sellers-api")),
     path('landing/api/', include('landing.api.urls', namespace="landing-api")),
-    path('accounts/api/', include('accounts.api.urls', namespace="accounts-api")),
+    path('accounts/api/', csrf_exempt(include('accounts.api.urls', namespace="accounts-api"))),
     # path('utils/move/', move)
 ]
 if settings.DEBUG:
