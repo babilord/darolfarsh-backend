@@ -27,12 +27,12 @@ urlpatterns = [
     path("me/", me),
 
     # update profile
-    path("profile/", csrf_exempt(update_profile)),  # PATCH /accounts/api/profile/
+    path("profile/", update_profile),  # PATCH /accounts/api/profile/
 
     # debug timezone
-    path("dbtz/", csrf_exempt(dbtz)),
+    path("dbtz/", dbtz),
 
     # forgot/reset password
-    path("forgot-password/", csrf_exempt(forgot_password)),
-    path("reset-password/", csrf_exempt(reset_password)),
+    path("forgot-password/", forgot_password),
+    path("reset-password/", reset_password),
 ]
