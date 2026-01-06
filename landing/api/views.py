@@ -49,6 +49,9 @@ class LoginAPI(generics.GenericAPIView):
     authentication_classes = (BasicAuthentication,)
 
     #@method_decorator(csrf_exempt, name='dispatch')
+    def options(self, request, *args, **kwargs):
+        return super().options(request, *args, **kwargs)
+    
     def post(self, request, *args, **kwargs):
         username = request.data.get("username")
         password = request.data.get("password")
