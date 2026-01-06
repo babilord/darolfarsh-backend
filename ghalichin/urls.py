@@ -49,8 +49,8 @@ urlpatterns = [
     path('room/api/', include('room.api.urls', namespace="room-api")),
     path('sellers/api/', include('sellers.api.urls', namespace="sellers-api")),
     path('landing/api/', include('landing.api.urls', namespace="landing-api")),
-    path('accounts/api/', include('accounts.api.urls', namespace="accounts-api")),
-    path("csrf/", get_csrf),
+    #path('accounts/api/', include('accounts.api.urls', namespace="accounts-api")),
+    #path("csrf/", get_csrf),
     # path('utils/move/', move)
     # Swagger UI
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
