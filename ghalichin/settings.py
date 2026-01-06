@@ -167,11 +167,13 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = [
-    "https://daralfarsha.com",
-    "http://localhost:3000",
-]
+
+# CORS_ORIGIN_WHITELIST = [
+#     "https://daralfarsha.com",
+#     "http://localhost:3000",
+# ]
 
 
 # Password reset token expiry (Django 2.2)
