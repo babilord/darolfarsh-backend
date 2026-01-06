@@ -1,6 +1,5 @@
 from django.urls import path
 
-from landing.api.views import LoginAPI
 from .views import RugFinderAPI, RugPartListAPI, RugTypListAPI, UserRugListAPI, UserRugDetailAPI, RugSellersListAPI, \
     RugLogCreateAPI, NewRugPartsListAPI, RugBrandsListAPI, RugYarnsListAPI, RugColorsListAPI, RugCitiesListAPI, \
     RugListAPI, RugReplacementFormAPI, CustomRugSizeListAPI, CustomRugRequestAPI, RugDensitiesListAPI, RugShanehsListAPI
@@ -25,5 +24,4 @@ urlpatterns = [
     path('user-rug/<int:pk>', UserRugDetailAPI.as_view(), name="user-rug-detail"),
     path('rug/<int:pk>/sellers', RugSellersListAPI.as_view(), name="rug-sellers"),
     path('log/', RugLogCreateAPI.as_view(), name="rug-log"),
-    path('user/login/', LoginAPI.as_view(), name="user-login"),
 ]
