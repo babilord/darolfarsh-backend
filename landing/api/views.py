@@ -48,6 +48,7 @@ class LoginAPI(generics.GenericAPIView):
     serializer_class = ContentLoginSerializer
     authentication_classes = (BasicAuthentication,)
 
+    @method_decorator(csrf_exempt, name='dispatch')
     def post(self, request, *args, **kwargs):
         username = request.data.get("username")
         password = request.data.get("password")
