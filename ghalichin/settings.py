@@ -90,8 +90,6 @@ TEMPLATES = [
     },
 ]
 
-DEBUG = True
-
 WSGI_APPLICATION = 'ghalichin.wsgi.application'
 
 # Database
@@ -162,7 +160,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'knox.auth.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
+        #'rest_framework.authentication.SessionAuthentication'
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }
@@ -171,14 +169,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 CORS_ORIGIN_WHITELIST = [
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:8080",
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:9000",
     "https://daralfarsha.com",
-    "http://daralfarsha.com",
+    "http://localhost:3000",
 ]
 
 
