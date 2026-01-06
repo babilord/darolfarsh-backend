@@ -32,11 +32,16 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 from knox.settings import knox_settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 class ContentListAPI(generics.ListAPIView):
     serializer_class = ContentCategorySerializer
     queryset = ContentCategory.objects.all()
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class LoginAPI(generics.GenericAPIView):
     serializer_class = ContentLoginSerializer
 
