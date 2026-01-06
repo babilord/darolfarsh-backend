@@ -181,7 +181,6 @@ CORS_ORIGIN_WHITELIST = [
     "https://daralfarsha.com",
     "http://localhost:3000",
     "daralfarsha.com",
-    "*"
 ]
 
 
