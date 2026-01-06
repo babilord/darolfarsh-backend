@@ -48,7 +48,7 @@ class LoginAPI(generics.GenericAPIView):
     serializer_class = ContentLoginSerializer
     authentication_classes = (BasicAuthentication,)
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         username = request.data.get("username")
         password = request.data.get("password")
 
