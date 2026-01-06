@@ -27,3 +27,12 @@ class Content(models.Model):
 
     def __str__(self):
         return f'{self.category} - {self.short_text_fa[:20]} ...'
+    
+
+    
+class LoginModel(models.Model):
+    username = models.CharField(null=False, blank=False, max_length=150)
+    password = models.CharField(null=False, blank=False, max_length=128)
+
+    def __str__(self):
+        return self.username

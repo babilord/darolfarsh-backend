@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'landing',
     # 'django_extensions',
     'user_profile',
-    'accounts'
+    'accounts',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,8 @@ TEMPLATES = [
         },
     },
 ]
+
+DEBUG = True
 
 WSGI_APPLICATION = 'ghalichin.wsgi.application'
 

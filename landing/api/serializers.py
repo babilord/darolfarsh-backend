@@ -1,4 +1,4 @@
-from landing.models import Content, ContentCategory
+from landing.models import Content, ContentCategory, LoginModel
 from rest_framework import serializers
 
 
@@ -33,6 +33,15 @@ class ContentCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ContentCategory
         fields = ['category', 'contents']
+
+    def get_contents(self, obj):
+        return ContentSerializer(obj.contents.all(), many=True).data
+    
+
+class ContentLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoginModel
+        fields = ['username', 'password']
 
     def get_contents(self, obj):
         return ContentSerializer(obj.contents.all(), many=True).data
