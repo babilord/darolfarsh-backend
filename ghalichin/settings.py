@@ -168,7 +168,8 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://daralfarsha.com",  # optional if same domain
+    "https://daralfarsha.com",
+    "daralfarsha.com",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
