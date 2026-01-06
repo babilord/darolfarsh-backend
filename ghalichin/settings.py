@@ -166,21 +166,43 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+# Allowed origins (old name in v3.0.2)
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "https://daralfarsha.com",
+]
+
+# Allow credentials if you need cookies/session
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = [
+# Allowed headers
+CORS_ALLOW_HEADERS = (
+    "authorization",
+    "content-type",
+    "x-csrftoken",
+)
+
+# Allowed methods
+CORS_ALLOW_METHODS = (
     "GET",
     "POST",
-    "*",
-]
+    "OPTIONS",
+)
 
 
 
-CORS_ORIGIN_WHITELIST = [
-    "https://daralfarsha.com",
-    "http://localhost:3000",
-]
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ALLOWED_ORIGINS = [ "http://localhost:3000","https://daralfarsha.com" ] 
+# CORS_ALLOW_HEADERS = [ "authorization", "content-type", "x-csrftoken", ] 
+# CORS_ALLOW_METHODS = [ "GET", "POST", "OPTIONS", ]
+
+
+# CORS_ORIGIN_WHITELIST = [
+#     "https://daralfarsha.com",
+#     "http://localhost:3000",
+# ]
 
 
 # Password reset token expiry (Django 2.2)

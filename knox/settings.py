@@ -11,16 +11,6 @@ DEFAULTS = {
     'TOKEN_TTL': None,
     'NO_REMEMBER_ME': timedelta(hours=6),
     'USER_SERIALIZER': 'knox.serializers.UserSerializer',
-    'CORS_ORIGIN_WHITELIST' : [
-        'https://example.com',
-        'https://sub.example.com',
-        'http://localhost:8080',
-        'http://localhost:3000',
-        'http://localhost:3001',
-        'http://127.0.0.1:9000',
-        'https://daralfarsha.com',
-        'http://daralfarsha.com'
-    ]
 }
 
 IMPORT_STRINGS = {
