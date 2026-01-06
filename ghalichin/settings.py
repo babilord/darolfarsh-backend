@@ -29,7 +29,6 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'api.daralfarsha.com',
-    'https://api.daralfarsha.com',
 ]
 
 # Application definition
