@@ -1,7 +1,6 @@
 from django.urls import path
 from knox import views as knox_views
 from django.views.decorators.csrf import csrf_exempt
-from .views import KnoxLoginAPI
 from .views import (
     health,
     register,
