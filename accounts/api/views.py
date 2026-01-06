@@ -29,7 +29,7 @@ def health(request):
     return JsonResponse({"status": "ok", "module": "accounts"})
 
 @csrf_exempt
-@api_view(["POST"])
+@api_view(["POST","OPTIONS"])
 @permission_classes([AllowAny])
 def register(request):
     if request.method != "POST":
@@ -62,33 +62,7 @@ def register(request):
 
     return JsonResponse({"detail": "User created", "id": user.id, "email": user.email}, status=201)
 
-
-class KnoxLoginAPI(KnoxLoginView):
-    authentication_classes = []
-    permission_classes = []
-
-    def post(self, request, format=None):
-        # Knox expects username, but your frontend sends email
-        username = request.data.get("email") or request.data.get("username")
-        password = request.data.get("password")
-
-        if not username or not password:
-            return Response({"detail": "email/username and password required"}, status=400)
-
-        serializer = AuthTokenSerializer(data={
-            "username": username,
-            "password": password
-        })
-        serializer.is_valid(raise_exception=True)
-
-        user = serializer.validated_data["user"]
-        login(request, user)
-
-        return super(KnoxLoginAPI, self).post(request, format=None)
-
-
-
-@api_view(["GET"])
+@api_view(["GET","OPTIONS"])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def me(request):
@@ -118,7 +92,7 @@ def _pick(data, *keys, default=None):
     return default
 
 
-@api_view(["PATCH"])
+@api_view(["PATCH","OPTIONS"])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def update_profile(request):
@@ -180,7 +154,7 @@ def update_profile(request):
         status=200,
     )
 
-@api_view(["POST"])
+@api_view(["POST","OPTIONS"])
 def forgot_password(request):
     email = (request.data.get("email") or "").strip().lower()
     if not email:
@@ -215,8 +189,7 @@ def forgot_password(request):
     return Response({"detail": "If that email exists, a reset link was sent."}, status=200)
 
 
-
-@api_view(["POST"])
+@api_view(["POST","OPTIONS"])
 def reset_password(request):
     uidb64 = request.data.get("uid")
     token = request.data.get("token")
