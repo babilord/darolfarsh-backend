@@ -34,6 +34,8 @@ from knox.models import AuthToken
 from knox.settings import knox_settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authentication import BasicAuthentication
+
 
 
 class ContentListAPI(generics.ListAPIView):
@@ -44,6 +46,7 @@ class ContentListAPI(generics.ListAPIView):
 @method_decorator(csrf_exempt, name='dispatch')
 class LoginAPI(generics.GenericAPIView):
     serializer_class = ContentLoginSerializer
+    authentication_classes = (BasicAuthentication,)
 
     def post(self, request, *args, **kwargs):
         username = request.data.get("username")
