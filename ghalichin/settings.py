@@ -167,7 +167,7 @@ REST_FRAMEWORK = {
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "GET",
@@ -180,7 +180,6 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     "https://daralfarsha.com",
     "http://localhost:3000",
-    "daralfarsha.com",
 ]
 
 
