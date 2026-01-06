@@ -173,7 +173,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 # Allow credentials if you need cookies/session
-CORS_ALLOW_CREDENTIALS = True
+#CORS_ALLOW_CREDENTIALS = True
 
 # Allowed headers
 # CORS_ALLOW_HEADERS = (
@@ -183,9 +183,9 @@ CORS_ALLOW_CREDENTIALS = True
 # )
 
 # Allowed methods
-CORS_ALLOW_METHODS = (
-    "*"
-)
+# CORS_ALLOW_METHODS = (
+#     "*"
+# )
 
 
 
