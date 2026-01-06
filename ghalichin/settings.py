@@ -170,17 +170,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 #CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://daralfarsha.com",
-    "http://localhost:3000",
-    "daralfarsha.com",
+    "GET",
+    "POST",
+    "*",
 ]
 
 
 
-# CORS_ORIGIN_WHITELIST = [
-#     "https://daralfarsha.com",
-#     "http://localhost:3000",
-# ]
+CORS_ORIGIN_WHITELIST = [
+    "https://daralfarsha.com",
+    "http://localhost:3000",
+    "daralfarsha.com",
+    "*"
+]
 
 
 # Password reset token expiry (Django 2.2)
