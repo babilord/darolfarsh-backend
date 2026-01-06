@@ -25,9 +25,7 @@ class CorsOptionsMixin:
         else:
             resp['Access-Control-Allow-Origin'] = ','.join(getattr(django_settings, 'CORS_ORIGIN_WHITELIST', [
                 "https://daralfarsha.com",
-                "http://localhost:3000",
-                "daralfarsha.com",
-                "*"])) or '*'
+                "http://localhost:3000"])) or '*'
         resp['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
         resp['Access-Control-Allow-Headers'] = 'Authorization, Content-Type, X-CSRFToken'
         return resp

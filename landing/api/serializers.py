@@ -42,6 +42,3 @@ class ContentLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoginModel
         fields = ['username', 'password']
-
-    def get_contents(self, obj):
-        return ContentSerializer(obj.contents.all(), many=True).data

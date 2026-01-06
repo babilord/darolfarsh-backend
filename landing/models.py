@@ -31,7 +31,7 @@ class Content(models.Model):
 
     
 class LoginModel(models.Model):
-    username = models.CharField(null=False, blank=False, max_length=150)
+    username = models.CharField(null=False, blank=False, max_length=250)
     password = models.CharField(null=False, blank=False, max_length=128)
 
     def __str__(self):
