@@ -67,6 +67,7 @@ def register(request):
 @permission_classes([IsAuthenticated])
 def me(request):
     u = request.user
+    profile, _ = Profile.objects.get_or_create(user=u)
     return JsonResponse(
         {
             "id": u.id,
@@ -74,6 +75,7 @@ def me(request):
             "email": u.email,
             "first_name": u.first_name,
             "last_name": u.last_name,
+            "phonenumber" : profile.phone if hasattr(profile, "phone") else getattr(profile, "phone_number", None),
         },
         status=200,
     )
@@ -146,10 +148,8 @@ def update_profile(request):
                 "email": user.email,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-            },
-            "profile": {
-                "phone": getattr(profile, "phone", getattr(profile, "phone_number", None)),
-            },
+                "phonenumber" : getattr(profile, "phone", getattr(profile, "phone_number", None)),
+            }
         },
         status=200,
     )
